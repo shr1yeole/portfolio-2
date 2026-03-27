@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leave Requests | Success Engraves Pvt.Ltd</title>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0;}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #fff;
+      color: #064663;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #e6f0f3; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(2,128,144,0.15); position: sticky; top: 0; z-index: 100; color: #028090;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 10px; user-select: none; cursor:pointer;}
+    .brand-logo img { height: 40px; border-radius: 8px; }
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #028090;
+    }
+    nav ul { display: flex; list-style: none; gap: 30px; }
+    nav ul li a {
+      font-weight: 600; color: #028090; font-size: 1.08rem;
+      padding: 3px 0;
+      transition: color 0.3s;
+      text-decoration:none;
+    }
+    nav ul li a.active, nav ul li a:hover { color: #ef476f; }
+    nav ul li a.active::after, nav ul li a:hover::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 2px solid #ef476f;
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    .auth-buttons a {
+      padding: 8px 18px;
+      background: #ef476f;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(239,71,111,0.7);
+      font-size: 1rem;
+      user-select: none;
+      text-decoration:none;
+    }
+    .auth-buttons a:hover {
+      background: #ff6f91;
+      box-shadow: 0 6px 20px rgba(255,111,145,0.9);
+    }
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 48px auto 24px auto;
+      padding: 0 16px;
+      animation: fadeInUp 1.2s;
+      width: 100%;
+    }
+    h2.section-title {
+      font-family: 'Montserrat',sans-serif;
+      color: #028090;
+      margin-bottom:12px;
+      margin-top: 0;
+      letter-spacing: 1px;
+      font-size: 1.15rem;
+      font-weight:700;
+    }
+    .leave-controls {
+      display:flex; gap:9px; flex-wrap:wrap; margin-bottom:10px;
+    }
+    .leave-controls input {
+      padding:7px 10px;
+      border-radius:7px;
+      border:1.5px solid #073642;
+      font-size:1rem;
+    }
+    #leaveRequestBtn {
+      padding:7px 17px;
+      background:#028090;
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    #leaveRequestBtn:hover { background:#05505a; }
+    table.leave-list {
+      width:100%;
+      border-collapse:collapse;
+    }
+    table.leave-list th, table.leave-list td {
+      border:1px solid #028090;
+      padding: 7px 10px;
+      text-align: center;
+    }
+    table.leave-list th {
+      background:#028090;
+      color:#fff;
+    }
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      background: #e6f0f3;
+      color: #05505a;
+      box-shadow: 0 -2px 10px rgba(14,81,92,0.2);
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-top: auto;
+    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px);} to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-logo" onclick="window.location.href='dashboard.html'">
+      <img src="assets/success.jpg" alt="Success Engravers Logo" />
+      <span class="brand-title">SUCCESS ENGRAVERS PVT.LTD</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="files.html">Files</a></li>
+        <li><a href="employee.html">Employees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="leave.html" class="active">Leave</a></li>
+        <li><a href="assets.html">Assets</a></li>
+        <li><a href="companydocs.html">Company Docs</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="signin.html">Sign In</a>
+    </div>
+  </header>
+  <main>
+    <section id="leaveSection" class="active">
+      <h2 class="section-title">Leave Requests</h2>
+      <div class="leave-controls">
+        <input id="leaveEmpId" placeholder="Employee ID" />
+        <input id="leaveType" placeholder="Type (Casual/Sick/...)" />
+        <input id="leaveFrom" type="date" placeholder="From" />
+        <input id="leaveTo" type="date" placeholder="To" />
+        <button id="leaveRequestBtn">Request Leave</button>
+      </div>
+      <table class="leave-list" id="leaveTable">
+        <thead>
+          <tr>
+            <th>Employee ID</th><th>Type</th><th>From</th><th>To</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 SUCCESS ENGRAVERS PVT.LTD. All rights reserved.
+  </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  let leaveRequests = JSON.parse(localStorage.getItem('leaveRequests')||'[]');
+
+  function renderLeaveTable() {
+    const tbody = $('#leaveTable tbody').empty();
+    if(!leaveRequests.length) {
+      tbody.append('<tr><td colspan="5" style="text-align:center;">No leave requests.</td></tr>');
+      return;
+    }
+    leaveRequests.forEach(req=>{
+      tbody.append(`<tr><td>${req.id}</td><td>${req.type}</td><td>${req.from}</td><td>${req.to}</td><td>${req.status}</td></tr>`);
+    });
+  }
+
+  $('#leaveRequestBtn').on('click',function(){
+    let id=$('#leaveEmpId').val().trim(),
+        type=$('#leaveType').val().trim(),
+        from=$('#leaveFrom').val(),
+        to=$('#leaveTo').val();
+    if(!id||!type||!from||!to){ alert("All fields required."); return;}
+    leaveRequests.push({id,type,from,to,status:"Pending"});
+    localStorage.setItem('leaveRequests', JSON.stringify(leaveRequests));
+    $('#leaveEmpId,#leaveType,#leaveFrom,#leaveTo').val("");
+    renderLeaveTable();
+  });
+
+  renderLeaveTable();
+</script>
+</body>
+</html>

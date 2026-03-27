@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employees | Success Engraves Pvt.Ltd</title>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0;}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #fff;
+      color: #064663;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #e6f0f3; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(2,128,144,0.15); position: sticky; top: 0; z-index: 100; color: #028090;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 10px; user-select: none; }
+    .brand-logo img { height: 40px; border-radius: 8px; cursor: pointer; }
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #028090;
+    }
+    nav ul { display: flex; list-style: none; gap: 30px; }
+    nav ul li a {
+      font-weight: 600; color: #028090; font-size: 1.08rem;
+      padding: 3px 0;
+      transition: color 0.3s;
+      position:relative;
+      text-decoration:none;
+    }
+    nav ul li a.active, nav ul li a:hover { color: #ef476f; }
+    nav ul li a.active::after, nav ul li a:hover::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 2px solid #ef476f;
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    .auth-buttons a {
+      padding: 8px 18px;
+      background: #ef476f;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(239,71,111,0.7);
+      font-size: 1rem; user-select: none;
+      text-decoration:none;
+    }
+    .auth-buttons a:hover {
+      background: #ff6f91; box-shadow: 0 6px 20px rgba(255,111,145,0.9);
+    }
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 48px auto 24px auto;
+      padding: 0 16px;
+      animation: fadeInUp 1.2s;
+      width: 100%;
+    }
+    h2.section-title {
+      font-family: 'Montserrat',sans-serif;
+      color: #028090;
+      margin-bottom:12px;
+      margin-top: 0;
+      letter-spacing: 1px;
+      font-size: 1.15rem;
+      font-weight:700;
+    }
+    .employee-controls { display: flex; gap: 11px; flex-wrap: wrap; margin-bottom: 11px;}
+    .employee-controls input { padding:7px 10px; border-radius:7px; border:1.5px solid #073642; font-size:1rem;}
+    #addEmployeeBtn {padding:7px 20px; background: #028090; color: #fff; border: none; border-radius:8px; font-weight:600; cursor:pointer;}
+    #addEmployeeBtn:hover { background: #05505a;}
+    table.employee-list {width:100%; border-collapse:collapse; margin-bottom:17px;}
+    table.employee-list th, table.employee-list td {border:1px solid #028090; padding: 7px 11px; font-size:0.99rem; text-align:center;}
+    table.employee-list th {background:#028090; color:#fff;}
+    .delete-btn {
+      background-color: #ef476f;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .delete-btn:hover {
+      background-color: #d73c60;
+    }
+    .delete-btn.disabled {
+      background-color: #ccc;
+      cursor: default;
+      color: #777;
+      pointer-events: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      background: #e6f0f3;
+      color: #05505a;
+      box-shadow: 0 -2px 10px rgba(14,81,92,0.2);
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-logo" onclick="window.location.href='dashboard.html'">
+      <img src="assets/success.jpg" alt="Success Engravers Logo" />
+      <span class="brand-title">SUCCESS ENGRAVERS PVT.LTD</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="files.html">Files</a></li>
+        <li><a href="employee.html" class="active">Employees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="leave.html">Leave</a></li>
+        <li><a href="assets.html">Assets</a></li>
+        <li><a href="companydocs.html">Company Docs</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="signin.html">Sign In</a>
+    </div>
+  </header>
+  <main>
+    <section id="employeeSection" class="active">
+      <h2 class="section-title">Employee Directory</h2>
+      <div class="employee-controls">
+        <input id="empName" placeholder="Name" />
+        <input id="empId" placeholder="ID" />
+        <input id="empDept" placeholder="Department" />
+        <input id="empContact" placeholder="Contact" />
+        <button id="addEmployeeBtn">Add Employee</button>
+        <input style="flex:1; min-width:170px;" id="employeeSearch" placeholder="Search Employees...">
+      </div>
+      <table class="employee-list" id="employeeTable">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Department</th><th>Contact</th><th>Action</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 SUCCESS ENGRAVERS PVT.LTD. All rights reserved.
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Load employees and add example employee if none exist in storage
+    let employees = [];
+    if (localStorage.getItem('employees')) {
+      employees = JSON.parse(localStorage.getItem('employees'));
+    }
+    if (!employees.some(emp => emp.id === "E101")) {
+      employees.unshift({
+        id: "E101",
+        name: "Rahul Sharma",
+        dept: "Sales",
+        contact: "9876543210"
+      });
+      localStorage.setItem('employees', JSON.stringify(employees));
+    }
+
+    function renderEmployeeTable(searchText) {
+      const tbody = $('#employeeTable tbody').empty();
+      let filtered = employees.filter(emp =>
+        !searchText
+        || emp.name.toLowerCase().includes(searchText.toLowerCase())
+        || emp.id.toLowerCase().includes(searchText.toLowerCase())
+        || emp.dept.toLowerCase().includes(searchText.toLowerCase())
+        || emp.contact.toLowerCase().includes(searchText.toLowerCase())
+      );
+      if (!filtered.length) {
+        tbody.append('<tr><td colspan="5" style="text-align:center;">No records.</td></tr>');
+        return;
+      }
+      filtered.forEach((emp, index) => {
+        const isExample = emp.id === "E101";
+        tbody.append(
+          `<tr>
+            <td>${emp.id}</td>
+            <td>${emp.name}</td>
+            <td>${emp.dept}</td>
+            <td>${emp.contact}</td>
+            <td>
+              <button class="delete-btn ${isExample ? 'disabled' : ''}" data-index="${index}" ${isExample ? 'title="Cannot delete example employee"' : ''}>
+                ${isExample ? 'Protected' : 'Delete'}
+              </button>
+            </td>
+          </tr>`
+        );
+      });
+    }
+
+    $('#addEmployeeBtn').on('click', function(){
+      let name=$('#empName').val().trim(),
+          id=$('#empId').val().trim(),
+          dept=$('#empDept').val().trim(),
+          contact=$('#empContact').val().trim();
+      if(!name||!id){ alert('Name/ID required.'); return;}
+      if(employees.some(e=>e.id===id)){alert('Duplicate ID.'); return;}
+      employees.push({id,name,dept,contact});
+      localStorage.setItem('employees', JSON.stringify(employees));
+      $('#empName,#empId,#empDept,#empContact').val('');
+      renderEmployeeTable($('#employeeSearch').val());
+    });
+
+    $('#employeeSearch').on('input', function(){
+      renderEmployeeTable($(this).val());
+    });
+
+    $('#employeeTable').on('click', '.delete-btn', function(){
+      if ($(this).hasClass('disabled')) {
+        return; // Disabled button, do nothing
+      }
+      const index = $(this).data('index');
+      if(confirm(`Delete employee ${employees[index].name} (ID: ${employees[index].id})?`)) {
+        employees.splice(index, 1);
+        localStorage.setItem('employees', JSON.stringify(employees));
+        renderEmployeeTable($('#employeeSearch').val());
+      }
+    });
+
+    renderEmployeeTable('');
+  </script>
+</body>
+</html>

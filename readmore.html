@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Success Engraves Pvt.Ltd - About Us</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #ffffff;
+      color: #064663; /* Primary text dark teal */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header */
+    header {
+      background: #028090; /* Strong teal primary */
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(2, 128, 144, 0.5); /* Teal shadow */
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-logo img {
+      height: 40px;
+      border-radius: 8px;
+      filter: drop-shadow(0 0 3px rgba(239, 71, 111, 0.8)); /* Coral shadow */
+    }
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 5px rgba(239, 71, 111, 0.7); /* Coral glow */
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+    nav ul li a {
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease, box-shadow 0.3s ease;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ef476f; /* Coral */
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ef476f; /* Coral */
+      box-shadow: 0 2px 8px rgba(239, 71, 111, 0.6);
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    .auth-buttons a {
+      margin-left: 15px;
+      padding: 8px 18px;
+      background: #ef476f; /* Coral */
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(239, 71, 111, 0.7);
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .auth-buttons a:hover {
+      background: #d74160; /* Slightly darker coral */
+      box-shadow: 0 6px 20px rgba(215, 65, 96, 0.9);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 900px;
+      margin: 60px auto 40px;
+      padding: 30px 40px;
+      border-radius: 15px;
+      background: #ffffff;
+      box-shadow: 0 12px 30px rgba(2, 128, 144, 0.1); /* Soft teal shadow */
+    }
+
+    h2 {
+      color: #028090; /* Strong teal */
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 20px;
+    }
+
+    p, ul {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #05505a; /* Softer teal */
+      margin-bottom: 20px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      background: #064663; /* Dark teal footer */
+      color: #ef476f; /* Coral text */
+      user-select: none;
+      box-shadow: 0 -2px 10px rgba(239, 71, 111, 0.3); /* Coral glow */
+      letter-spacing: 1px;
+      font-weight: 600;
+      animation: fadeIn 1.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-logo" onclick="window.location.href='index.html'" aria-label="Success Engravers home">
+      <img src="assets/success.jpg" alt="Success Engravers Logo" loading="lazy" />
+      <span class="brand-title">SUCCESS ENGRAVERS PVT.LTD</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="fileupload.html">File Upload</a></li>
+        <li><a href="attendance.html" aria-current="page">Attendance</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="signin.html" class="sign-in">Sign In</a>
+    </div>
+  </header>
+  <main>
+    <h2>Bringing Brands to Life</h2>
+    <p>We deliver comprehensive sign services to meet the needs of clients, specializing in turnkey signage projects with quick turnaround times, high quality, and low costs.</p>
+
+    <h2>Our Expertise</h2>
+    <ul>
+      <li>Experts in signage, branding, and wayfinding programs.</li>
+      <li>Design support: From concept to completion, our expert design team assists in signage project design as part of design-build package services.</li>
+      <li>Planning and Project Management: Dedicated project managers ensure seamless communication and coordination at all stages.</li>
+      <li>Manufacturing: Latest production techniques, well-equipped plant, and stringent quality checks minimize costs and turnaround time.</li>
+      <li>Installation: Trained installation team meets schedules and deadlines while ensuring accuracy and safety norms.</li>
+    </ul>
+
+    <h2>Business Parks Served</h2>
+    <ul>
+      <li>Embassy Quadron Business Park, Hinjewadi, Pune</li>
+      <li>247 Park, Vikhroli, Mumbai</li>
+      <li>Kosmo One Business Park, Chennai</li>
+      <li>Embassy Tech Zone, Hinjewadi, Pune</li>
+      <li>Embassy Oxygen Business Park, Noida, UP</li>
+      <li>Embassy Galaxy Business Park, Noida, UP</li>
+      <li>One International Centre, Parel, Mumbai</li>
+      <li>Cyber City Magarpatta, Hadapsar, Pune</li>
+      <li>Symphony IT Park, Nanded City, Pune</li>
+    </ul>
+
+    <h2>What We Do</h2>
+    <ul>
+      <li>External and Internal Signage</li>
+      <li>Wayfinding Systems</li>
+      <li>Fire &amp; Safety Signage</li>
+      <li>Architectural Signage</li>
+    </ul>
+
+    <h2>Contact Details</h2>
+    <p>Registered Office: Unit 11/12, Konark Industrial Estate, Erandwane, Pune 411038</p>
+    <p>Phone: +91-20-25675100 / +91-20-25678440</p>
+    <p>Mobile: +91-9822250022 / +91-9404998884</p>
+    <p>The Works: Survey No. 81, Dangat Patil Industrial Estate, Pune - 411023</p>
+  </main>
+  <footer>
+    &copy; 2025 SUCCESS ENGRAVERS PVT.LTD. All rights reserved.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attendance | Success Engraves Pvt.Ltd</title>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0;}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #fff;
+      color: #064663;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #e6f0f3; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(2,128,144,0.15); position: sticky; top: 0; z-index: 100; color: #028090;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 10px; user-select: none; }
+    .brand-logo img { height: 40px; border-radius: 8px; cursor: pointer; }
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #028090;
+    }
+    nav ul { display: flex; list-style: none; gap: 30px; }
+    nav ul li a {
+      font-weight: 600; color: #028090; font-size: 1.08rem;
+      padding: 3px 0;
+      transition: color 0.3s;
+      position:relative;
+      text-decoration:none;
+    }
+    nav ul li a.active, nav ul li a:hover { color: #ef476f; }
+    nav ul li a.active::after, nav ul li a:hover::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 2px solid #ef476f;
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    .auth-buttons a {
+      padding: 8px 18px;
+      background: #ef476f;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(239,71,111,0.7);
+      font-size: 1rem; user-select: none;
+      text-decoration:none;
+    }
+    .auth-buttons a:hover {
+      background: #ff6f91; box-shadow: 0 6px 20px rgba(255,111,145,0.9);
+    }
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 48px auto 24px auto;
+      padding: 0 16px;
+      animation: fadeInUp 1.2s;
+      width: 100%;
+    }
+    h2.section-title {
+      font-family: 'Montserrat',sans-serif;
+      color: #028090;
+      margin-bottom:12px;
+      margin-top: 0;
+      letter-spacing: 1px;
+      font-size: 1.15rem;
+      font-weight:700;
+    }
+    .attendance-controls { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px;}
+    .attendance-controls input { padding: 7px 12px; font-size: 1rem; border-radius: 8px; border: 1.5px solid #073642; }
+    #addAttendanceEmployeeBtn { padding: 7px 15px; background: #028090; color: #fff; border-radius:7px; border:none; font-weight:600; cursor:pointer;}
+    #addAttendanceEmployeeBtn:hover {background:#05505a;}
+    .attendance-table-wrapper { overflow-x: auto; }
+    table.attendance-table { width: 100%; min-width: 520px; border-collapse: collapse; margin-bottom: 17px;}
+    table.attendance-table th, table.attendance-table td { border: 1px solid #028090; padding: 6px 9px; text-align: center; font-size: 0.98rem;}
+    table.attendance-table th { background: #028090; color: #fff; }
+    .summary-present { color: #139741; font-weight: 600;}
+    .summary-absent { color: #e04848; font-weight: 600;}
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      background: #e6f0f3;
+      color: #05505a;
+      box-shadow: 0 -2px 10px rgba(14,81,92,0.2);
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-logo" onclick="window.location.href='dashboard.html'">
+      <img src="assets/success.jpg" alt="Success Engravers Logo" />
+      <span class="brand-title">SUCCESS ENGRAVERS PVT.LTD</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="files.html">Files</a></li>
+        <li><a href="employee.html">Employees</a></li>
+        <li><a href="attendance.html" class="active">Attendance</a></li>
+        <li><a href="leave.html">Leave</a></li>
+        <li><a href="assets.html">Assets</a></li>
+        <li><a href="companydocs.html">Company Docs</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="signin.html">Sign In</a>
+    </div>
+  </header>
+  <main>
+    <section id="attendanceSection" class="active">
+      <h2 class="section-title">Attendance</h2>
+      <div class="attendance-controls">
+        <input type="text" id="attendanceEmpName" placeholder="Employee Name" />
+        <input type="text" id="attendanceEmpId" placeholder="Employee ID" />
+        <button id="addAttendanceEmployeeBtn">Add Employee</button>
+      </div>
+      <div class="attendance-table-wrapper">
+        <table id="attendanceTable" class="attendance-table"></table>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 SUCCESS ENGRAVERS PVT.LTD. All rights reserved.
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const MONTH = new Date().getMonth();
+    const YEAR = new Date().getFullYear();
+
+    function getDaysInMonth(month, year) {
+      return new Date(year, month + 1, 0).getDate();
+    }
+
+    const daysInMonth = getDaysInMonth(MONTH, YEAR);
+
+    // Load or initialize attendanceEmployees with one example entity if empty
+    let attendanceEmployees = JSON.parse(localStorage.getItem('attendanceEmployees')||'[]');
+    if(attendanceEmployees.length === 0){
+      attendanceEmployees.push({ id: "E101", name: "shravan yeole", attendance: Array(daysInMonth).fill('') });
+      localStorage.setItem('attendanceEmployees', JSON.stringify(attendanceEmployees));
+    }
+
+    function renderAttendanceTable() {
+      const $table = $('#attendanceTable');
+      $table.empty();
+
+      // Header row
+      let ths = '<th>ID</th><th>Name</th>';
+      for (let d = 1; d <= daysInMonth; d++) {
+        ths += `<th>${String(d).padStart(2, '0')}</th>`;
+      }
+      ths += '<th>Present</th><th>Absent</th>';
+
+      $table.append('<thead><tr>' + ths + '</tr></thead>');
+
+      const tbody = $('<tbody></tbody>');
+
+      attendanceEmployees.forEach((emp, ridx) => {
+        let row = `<td>${emp.id}</td><td>${emp.name}</td>`;
+        let present = 0, absent = 0;
+        for(let d=0; d<daysInMonth; d++){
+          let mark = emp.attendance[d] || '';
+          row += `<td>
+            <select data-eid="${ridx}" data-day="${d}" style="min-width:36px">
+              <option value="">-</option>
+              <option value="P"${mark === "P" ? " selected" : ""}>P</option>
+              <option value="A"${mark === "A" ? " selected" : ""}>A</option>
+            </select>
+          </td>`;
+          if(mark === "P") present++;
+          if(mark === "A") absent++;
+        }
+        row += `<td class="summary-present">${present}</td><td class="summary-absent">${absent}</td>`;
+        tbody.append('<tr>' + row + '</tr>');
+      });
+
+      $table.append(tbody);
+      localStorage.setItem('attendanceEmployees', JSON.stringify(attendanceEmployees));
+    }
+
+    $('#addAttendanceEmployeeBtn').on('click', function(){
+      let name = $('#attendanceEmpName').val().trim();
+      let id = $('#attendanceEmpId').val().trim();
+      if(!name || !id){
+        alert('Name/ID required.');
+        return;
+      }
+      if(attendanceEmployees.some(e => e.id === id)){
+        alert('Duplicate ID.');
+        return;
+      }
+      attendanceEmployees.push({ id, name, attendance: Array(daysInMonth).fill('') });
+      $('#attendanceEmpName,#attendanceEmpId').val('');
+      renderAttendanceTable();
+    });
+
+    $('#attendanceTable').on('change', 'select', function(){
+      let eid = $(this).data("eid");
+      let day = $(this).data("day");
+      let value = $(this).val();
+      attendanceEmployees[eid].attendance[day] = value;
+      renderAttendanceTable();
+    });
+
+    renderAttendanceTable();
+  </script>
+</body>
+</html>

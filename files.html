@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Files | Success Engraves Pvt.Ltd</title>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0;}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #fff;
+      color: #064663;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #e6f0f3; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(2,128,144,0.15); position: sticky; top: 0; z-index: 100; color: #028090;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 10px; user-select: none; }
+    .brand-logo img { height: 40px; border-radius: 8px; cursor: pointer; }
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #028090;
+    }
+    nav ul { display: flex; list-style: none; gap: 30px; }
+    nav ul li a {
+      font-weight: 600; color: #028090; font-size: 1.08rem;
+      padding: 3px 0;
+      transition: color 0.3s;
+      position:relative;
+      text-decoration:none;
+    }
+    nav ul li a.active, nav ul li a:hover { color: #ef476f; }
+    nav ul li a.active::after, nav ul li a:hover::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 2px solid #ef476f;
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    .auth-buttons a {
+      padding: 8px 18px;
+      background: #ef476f;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(239,71,111,0.7);
+      font-size: 1rem; user-select: none;
+      text-decoration:none;
+    }
+    .auth-buttons a:hover {
+      background: #ff6f91; box-shadow: 0 6px 20px rgba(255,111,145,0.9);
+    }
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 48px auto 24px auto;
+      padding: 0 16px;
+      animation: fadeInUp 1.2s;
+      width: 100%;
+    }
+    h2.section-title {
+      font-family: 'Montserrat',sans-serif;
+      color: #028090;
+      margin-bottom:12px;
+      margin-top: 0;
+      letter-spacing: 1px;
+      font-size: 1.15rem;
+      font-weight:700;
+    }
+    .upload-section { margin-bottom: 22px; background: #f0f9ff; border-radius: 15px; padding: 25px 30px; border: 2px solid #073642; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+    .upload-section input { padding: 9px 12px; }
+    .upload-section button { font-size:1rem; }
+    .template-btn { background: #028090; color: white; border: none; border-radius: 8px; padding: 9px 23px; cursor: pointer; font-weight: 600;}
+    .template-btn:hover { background: #026b6b;}
+    .download-btn { background: #028090; color: white; border: none; border-radius: 8px; padding: 8px 17px; margin-left: 6px; cursor: pointer; font-weight: 500;}
+    .download-btn:hover { background: #026b6b;}
+    .delete-btn { background: #ef476f; color: #fff; border: none; border-radius: 8px; padding: 8px 17px; margin-left: 6px; cursor: pointer; font-weight: 500;}
+    .delete-btn:hover { background: #c93053;}
+    table.file-list { width: 100%; border-collapse: separate; border-spacing: 0 13px; margin-bottom: 23px;}
+    table.file-list th, table.file-list td { text-align: left; padding: 12px 18px; }
+    table.file-list thead tr { background-color: #028090; color: #fff;}
+    table.file-list tbody tr { background: #f7fcfd;}
+    table.file-list tbody tr:hover { background-color: #e6f0f3;}
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      background: #e6f0f3;
+      color: #05505a;
+      box-shadow: 0 -2px 10px rgba(14,81,92,0.2);
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-logo" onclick="window.location.href='dashboard.html'">
+      <img src="assets/success.jpg" alt="Success Engravers Logo" />
+      <span class="brand-title">SUCCESS ENGRAVERS PVT.LTD</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="files.html" class="active">Files</a></li>
+        <li><a href="employee.html">Employees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="leave.html">Leave</a></li>
+        <li><a href="assets.html">Assets</a></li>
+        <li><a href="companydocs.html">Company Docs</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="signin.html">Sign In</a>
+    </div>
+  </header>
+  <main>
+    <section id="fileSection" class="active">
+      <h2 class="section-title">File Upload & Downloads</h2>
+      <div class="upload-section">
+        <input type="file" id="fileInput" multiple />
+        <button id="uploadBtn">Upload Files</button>
+        <button id="downloadTemplateBtn" class="template-btn">Download Admin Template</button>
+      </div>
+      <table class="file-list" id="fileTable">
+        <thead>
+          <tr><th>File Name</th><th>Type</th><th>Date Uploaded</th><th>Action</th></tr>
+        </thead>
+        <tbody><!-- rows JS --></tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 SUCCESS ENGRAVERS PVT.LTD. All rights reserved.
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Example file constant entity (never deleted)
+    const exampleFile = {
+      file: { name: "Company_Policy.pdf", type: "application/pdf" },
+      date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days ago
+      url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+    };
+
+    // Only user files go to localStorage
+    function getUserFiles() {
+      let arr = [];
+      try {
+        arr = JSON.parse(localStorage.getItem('filesData')) || [];
+      } catch(e) { arr = []; }
+      return arr;
+    }
+
+    let filesData = getUserFiles();
+
+    function renderFileTable(userFiles) {
+      const tbody = $('#fileTable tbody').empty();
+
+      // Always render example file at the top (no delete button)
+      const row = $('<tr></tr>');
+      const span = $('<span>').text(exampleFile.file.name).css({
+        cursor: 'pointer',
+        color: '#028090',
+        'text-decoration': 'underline'
+      }).on('click', () => window.open(exampleFile.url, '_blank'));
+      row.append($('<td>').append(span));
+      row.append($('<td>').text(exampleFile.file.type || 'N/A'));
+      row.append($('<td>').text(new Date(exampleFile.date).toLocaleString()));
+      const downloadBtn = $('<button>')
+        .addClass('download-btn')
+        .text('Download')
+        .on('click', function () {
+          const a = document.createElement('a');
+          a.href = exampleFile.url;
+          a.download = exampleFile.file.name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      row.append($('<td>').append(downloadBtn));
+      tbody.append(row);
+
+      // Then user files (with delete)
+      if (!userFiles.length) {
+        // If no user files, nothing more shown
+        return;
+      }
+      userFiles.forEach((f, idx) => {
+        const row = $('<tr></tr>');
+        const span = $('<span>').text(f.file.name).css({
+          cursor: 'pointer',
+          color: '#028090',
+          'text-decoration': 'underline'
+        }).on('click', () => window.open(f.url, '_blank'));
+        row.append($('<td>').append(span));
+        row.append($('<td>').text(f.file.type || 'N/A'));
+        row.append($('<td>').text(new Date(f.date).toLocaleString()));
+        const downloadBtn = $('<button>')
+          .addClass('download-btn')
+          .text('Download')
+          .on('click', function () {
+            const a = document.createElement('a');
+            a.href = f.url;
+            a.download = f.file.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          });
+        const deleteBtn = $('<button>')
+          .addClass('delete-btn')
+          .text('Delete')
+          .on('click', function () {
+            if (confirm('Are you sure you want to delete "' + f.file.name + '"?')) {
+              userFiles.splice(idx, 1);
+              localStorage.setItem('filesData', JSON.stringify(userFiles));
+              renderFileTable(userFiles);
+            }
+          });
+        row.append($('<td>').append(downloadBtn).append(deleteBtn));
+        tbody.append(row);
+      });
+    }
+
+    $('#uploadBtn').on('click', function () {
+      const fileList = $('#fileInput')[0].files;
+      if (!fileList.length) {
+        alert('Please select file(s) to upload.');
+        return;
+      }
+      let userFiles = getUserFiles();
+      for (let f of fileList) {
+        userFiles.push({
+          file: { name: f.name, type: f.type },
+          date: new Date().toISOString(),
+          url: URL.createObjectURL(f)
+        });
+      }
+      localStorage.setItem('filesData', JSON.stringify(userFiles));
+      $('#fileInput').val('');
+      renderFileTable(userFiles);
+    });
+
+    $('#downloadTemplateBtn').on('click', function () {
+      window.open('https://example.com/office-administration-template.xlsx', '_blank');
+    });
+
+    // Initial table render
+    renderFileTable(filesData);
+  </script>
+</body>
+</html>
