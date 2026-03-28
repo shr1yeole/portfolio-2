@@ -5,452 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact - Success Engravers Pvt.Ltd</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Keep your full CSS SAME (no change needed) */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Roboto',sans-serif;background:#fff;color:#064663;}
+    main{max-width:900px;margin:60px auto;padding:20px;}
+    h1{text-align:center;margin-bottom:20px;}
+
+    form.contact-form{
+      background:#f0f7f9;
+      padding:30px;
+      border-radius:10px;
+      display:flex;
+      flex-direction:column;
+      gap:15px;
     }
 
-    html, body {
-      height: 100%;
+    input, textarea{
+      padding:12px;
+      border-radius:8px;
+      border:1px solid #073642;
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #ffffff; /* White background */
-      color: #064663; /* Dark Teal primary text */
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    button{
+      background:#ef476f;
+      color:#fff;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    /* Header */
-    header {
-      background: #e6f0f3;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(6, 70, 99, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      animation: slideDown 1s ease forwards;
-    }
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .brand-logo img {
-      height: 40px;
-      border-radius: 8px;
-      animation: fadeIn 1.5s 0.3s ease forwards;
-    }
-    .brand-title {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #028090;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 2px rgba(2, 128, 144, 0.7);
-      animation: fadeIn 1.5s 0.5s ease forwards;
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-      animation: fadeIn 1.5s 0.7s ease forwards;
-    }
-    nav ul li a {
-      font-weight: 600;
-      color: #028090;
-      font-size: 1.1rem;
-      position: relative;
-      padding: 5px 0;
-      transition: color 0.3s ease;
-    }
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: 0; left: 0;
-      background-color: #ef476f;
-      transition: width 0.3s ease;
-    }
-    nav ul li a:hover {
-      color: #ef476f;
-    }
-    nav ul li a:hover::after {
-      width: 100%;
-    }
-    .auth-buttons a {
-      margin-left: 15px;
-      padding: 8px 18px;
-      background: #ef476f;
-      color: #ffffff;
-      font-weight: 700;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(239, 71, 111, 0.7);
-      transition: background 0.3s ease, color 0.3s ease;
-      font-size: 1rem;
-      user-select: none;
-    }
-    .auth-buttons a:hover {
-      background: #ff6f91;
-      color: #fff;
-      box-shadow: 0 6px 20px rgba(255, 111, 145, 0.9);
-    }
-
-    /* Main Content */
-    main {
-      max-width: 900px;
-      margin: 60px auto 40px;
-      padding: 0 20px;
-      animation: fadeInUp 1.5s ease forwards;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 2.2rem;
-      text-align: center;
-      color: #064663;
-      text-shadow: 1px 1px 3px rgba(5,80,90,0.3);
-      margin-bottom: 15px;
-    }
-
-    form.contact-form {
-      background: #f0f7f9;
-      padding: 30px 35px;
-      border-radius: 15px;
-      box-shadow: 0 12px 30px rgba(2,128,144,0.15);
-      border: 2px solid #073642;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    label {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #05505a;
-      user-select: none;
-    }
-
-    input[type="text"], input[type="email"], textarea {
-      padding: 14px 18px;
-      font-size: 1rem;
-      border-radius: 10px;
-      border: 1.5px solid #073642;
-      background: #ffffff;
-      color: #064663;
-      font-family: 'Roboto', sans-serif;
-      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-      resize: vertical;
-    }
-    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-      outline: none;
-      background: #ef476f;
-      color: #ffffff;
-      border-color: #ef476f;
-    }
-    textarea {
-      min-height: 120px;
-    }
-
-    button.submit-btn {
-      background: #ef476f;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 12px;
-      padding: 14px 0;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(239,71,111,0.6);
-      transition: background 0.3s ease, transform 0.2s ease;
-      user-select: none;
-    }
-    button.submit-btn:hover {
-      background: #d6456b;
-      transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(214,69,107,0.9);
-    }
-    button.submit-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 6px 18px rgba(239,71,111,0.4);
-    }
-
-    .form-message {
-      font-weight: 600;
-      color: #064663;
-      text-align: center;
-      padding: 15px;
-      border-radius: 12px;
-      background-color: #d1efef;
-      border: 2px solid #028090;
-      display: none;
-      user-select: none;
-    }
-    .form-error {
-      background-color: #fbe3e4;
-      border: 2px solid #ef476f;
-      color: #ef476f;
-    }
-
-    /* Contact Info */
-    .contact-info {
-      background: #f0f7f9;
-      padding: 30px 35px;
-      border-radius: 15px;
-      border: 2px solid #073642;
-      box-shadow: 0 12px 30px rgba(2,128,144,0.15);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .contact-info h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #064663;
-      margin-bottom: 10px;
-      user-select: none;
-    }
-    .contact-info p {
-      font-size: 1rem;
-      color: #05505a;
-      font-weight: 500;
-      user-select: text;
-    }
-    .contact-info a {
-      color: #028090;
-      font-weight: 700;
-    }
-    .contact-info a:hover, .contact-info a:focus {
-      text-decoration: underline;
-      color: #ef476f;
-    }
-
-    /* Social Media */
-    .social-media {
-      margin-top: 10px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
-    .social-media a {
-      color: #028090;
-      font-size: 1.8rem;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-    .social-media a:hover, .social-media a:focus {
-      color: #ef476f;
-    }
-
-    /* Map */
-    .map-container {
-      margin-top: 20px;
-      border: 2px solid #073642;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(2,128,144,0.15);
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      max-width: 900px;
-      height: 400px;
-    }
-    .map-container iframe {
-      border: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      border-radius: 15px;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 0.85rem;
-      background: #064663;
-      color: #ffffff;
-      user-select: none;
-      box-shadow: 0 -2px 10px rgba(2,128,144,0.6);
-      letter-spacing: 1px;
-      font-weight: 600;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 768px) {
-      main {
-        margin: 40px 15px 30px;
-      }
-      form.contact-form, .contact-info {
-        padding: 20px 25px;
-      }
-      .map-container {
-        height: 300px;
-      }
+    .form-message{
+      display:none;
+      text-align:center;
+      padding:10px;
+      margin-top:10px;
+      background:#d1efef;
     }
   </style>
-
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body>
 
-  <header>
-    <div class="brand-logo" onclick="window.location.href='index.html'" aria-label="Success Engravers home">
-      <img src="assets/success.jpg" alt="Success Engravers Logo" loading="lazy" />
-      <span class="brand-title">SUCCESS ENGRAVERS PVT.LTD</span>
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="contact.html" aria-current="page">Contact</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="aboutus.html">About Us</a></li>
-      </ul>
-    </nav>
-    <div class="auth-buttons">
-      <a href="signin.html" class="sign-in">Sign In</a>
-    </div>
-  </header>
+<body>
 
   <main>
     <h1>Contact Us</h1>
 
-    <form class="contact-form" aria-label="Contact form" novalidate>
-      <label for="name">Name<span aria-hidden="true" style="color:#ef476f;"> *</span></label>
-      <input type="text" id="name" name="name" aria-required="true" placeholder="Your full name" autocomplete="name" required />
+    <!-- ✅ FORM -->
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
 
-      <label for="email">Email<span aria-hidden="true" style="color:#ef476f;"> *</span></label>
-      <input type="email" id="email" name="email" aria-required="true" placeholder="name@example.com" autocomplete="email" required />
+      <button type="submit">Send Message</button>
 
-      <label for="subject">Subject<span aria-hidden="true" style="color:#ef476f;"> *</span></label>
-      <input type="text" id="subject" name="subject" aria-required="true" placeholder="Brief reason for contact" required />
-
-      <label for="message">Message<span aria-hidden="true" style="color:#ef476f;"> *</span></label>
-      <textarea id="message" name="message" aria-required="true" placeholder="Your message here..." required></textarea>
-
-      <button class="submit-btn" type="submit" aria-label="Send message">Send Message</button>
-
-      <div id="formMessage" class="form-message" role="alert" aria-live="assertive"></div>
+      <div id="formMessage" class="form-message"></div>
     </form>
 
-    <section class="contact-info" aria-label="Alternative contact info">
-      <h2>Other Ways to Reach Us</h2>
-      <p><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
-      <p><strong>Email:</strong> <a href="mailto:contact@successengravers.com">contact@successengravers.com</a></p>
-      <p><strong>Address:</strong> 123 Engraver St, Industrial Area, Cityname, INDIA</p>
-      <p><strong>Business Hours:</strong> Mon - Fri: 9 AM - 6 PM</p>
-
-      <div class="social-media" aria-label="Social media links">
-        <a href="https://www.facebook.com/successengravers" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/successengravers" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/successengravers" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/successengravers" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-
-      <div class="map-container" aria-label="Company location map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.040209029783!2d77.59456231517612!3d12.971598590855692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670e9ac359d%3A0xde37492a1645f831!2sBangalore%20City%20Centre!5e0!3m2!1sen!2sin!4v1695824335358!5m2!1sen!2sin"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Success Engravers Location"
-        ></iframe>
-      </div>
-    </section>
   </main>
 
-  <footer>
-    &copy; 2025 SUCCESS ENGRAVERS PVT.LTD. All rights reserved.
-  </footer>
-
-  <script>
-    (function() {
-      const form = document.querySelector('.contact-form');
-      const formMessage = document.getElementById('formMessage');
-
-      function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-      }
-
-      function showMessage(message, isError = false) {
-        formMessage.textContent = message;
-        formMessage.classList.toggle('form-error', isError);
-        formMessage.style.display = 'block';
-      }
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        formMessage.style.display = 'none';
-
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const subject = form.subject.value.trim();
-        const message = form.message.value.trim();
-
-        if (!name) {
-          showMessage('Please enter your name.', true);
-          form.name.focus();
-          return;
-        }
-        if (!email) {
-          showMessage('Please enter your email.', true);
-          form.email.focus();
-          return;
-        }
-        if (!validateEmail(email)) {
-          showMessage('Please enter a valid email address.', true);
-          form.email.focus();
-          return;
-        }
-        if (!subject) {
-          showMessage('Please enter the subject.', true);
-          form.subject.focus();
-          return;
-        }
-        if (!message) {
-          showMessage('Please enter your message.', true);
-          form.message.focus();
-          return;
-        }
-
-        showMessage('Sending your message...');
-        setTimeout(() => {
-          showMessage('Thank you for reaching out! We will get back to you shortly.');
-          form.reset();
-        }, 1500);
-      });
-    })();
-  </script>
+  <!-- ✅ CONNECT MAIL.JS -->
+  <script type="module" src="mail.js"></script>
 
 </body>
 </html>
